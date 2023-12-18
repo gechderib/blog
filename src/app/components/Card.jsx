@@ -3,8 +3,8 @@ import styles from './Card.module.css'
 const Card = ({title, description}) => {
   return (
     <div className={styles.card}>
-        <h1>{title}</h1>
-        <p>{description}</p>
+        <h1 className={styles.cardTitle}>{title}</h1>
+        <p className={styles.cardText}>{description}</p>
     </div>
   )
 }
