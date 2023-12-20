@@ -1,8 +1,12 @@
 import React from 'react'
+import BreadCrumbs from '../components/BreadCrumbs'
 
-const TopicLayout = () => {
+const TopicLayout = ({children}) => {
   return (
-    <div>TopicLayout</div>
+    <>
+    <BreadCrumbs/>
+    {children}
+    </>
   )
 }
 
