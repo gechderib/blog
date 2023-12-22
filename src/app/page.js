@@ -1,4 +1,7 @@
+'use client'
+import { useState } from "react";
 import Card from "./components/Card";
+import SearchBar from "./components/SearchBar";
 
 export default function Home() {
   const datas = [
@@ -43,15 +46,19 @@ export default function Home() {
       "description": "Delve into the fascinating world of machine learning. Gain insights into the principles and applications of machine learning algorithms, and explore how this technology is shaping various industries and domains."
     }
   ]
-  
 
+  const [userInput, setUserInput] = useState("")
+
+  const filteredData = datas.filter(data => data.title.includes(userInput))
   return (
     <div>
-      <h1>NextJS Crash Course </h1>
-      {datas.map(data => {
-        return <Card title={data.title} description={data.description} />
-      })}
+      <h1>Title of The ... </h1>
+      <SearchBar userInput={userInput} onChangeUserInput={(input) => setUserInput(input)} />
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-5">
+        {filteredData.map(data => {
+          return <Card title={data.title} description={data.description} />
+        })}
+      </div>
     </div>
   )
 }
-// git commit --date "10 day ago" -m "styling module added" 

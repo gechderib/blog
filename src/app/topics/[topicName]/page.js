@@ -24,17 +24,23 @@ const Topic = async ({ params: { topicName } }) => {
       ]
     })
   })
-
-  const data = await response.json()
-  
-  return (
-    <div>
-      <h1>{topicName}</h1>
-      {!data && <p>loading...</p>}
-      {data && <p>
-        {data.choices[0].message.content}
+  let content;
+  try {
+    const data = await response.json()
+    if (data) {
+      content = <div>
+        <h1>{topicName}</h1>
+        {data && <p>
+          {data.choices[0].message.content}
         </p>}
-    </div>
+      </div>
+    }
+
+  } catch (err) {
+    content = <h1>{err.message}</h1>
+  }
+
+  return (content
   )
 }
 
