@@ -1,9 +1,11 @@
+import BreadCrumbs from '@/app/components/BreadCrumbs'
 import React from 'react'
 
 const Topic = ({params: {topicName} }) => {
-    console.log(topicName)
   return (
-    <div>{topicName}</div>
+    <div>
+      {topicName}
+    </div>
   )
 }
 
