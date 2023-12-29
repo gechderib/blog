@@ -3,7 +3,8 @@ import React from 'react'
 
 const apiUrl = "https://api.openai.com/v1/chat/completions";
 
-const Topic = async ({ params: { topicName } }) => {
+const Topic = async ({ params }) => {
+  // topicName
   const response = await fetch(apiUrl, {
     method: "POST",
     headers: {
@@ -19,7 +20,7 @@ const Topic = async ({ params: { topicName } }) => {
         },
         {
           "role": "user",
-          "content": `Generate a post about ${topicName}!`
+          "content": `Generate a post about ${params.topicName}!`
         }
       ]
     })
@@ -29,7 +30,7 @@ const Topic = async ({ params: { topicName } }) => {
     const data = await response.json()
     if (data) {
       content = <div>
-        <h1>{topicName}</h1>
+        <h1>{params.topicName}</h1>
         {data && <p>
           {data.choices[0].message.content}
         </p>}
