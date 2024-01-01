@@ -1,9 +1,18 @@
 'use client'
 import { useState } from "react";
-import Card from "./components/Card";
-import SearchBar from "./components/SearchBar";
+import Card from "../components/Card";
+import SearchBar from "../components/SearchBar";
 
-export default function Home() {
+async function getPosts() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts")
+  if (!res.ok) {
+    throw new Error("Failed to fetch data")
+  }
+  return res.json()
+}
+
+
+export default async function Home() {
   const datas = [
     {
       "title": "Introduction to Python",
@@ -50,15 +59,25 @@ export default function Home() {
   const [userInput, setUserInput] = useState("")
 
   const filteredData = datas.filter(data => data.title.includes(userInput))
+  const data = await getPosts();
   return (
     <div>
       <h1>Title of The ... </h1>
+      {/* <h1>Title of The ... </h1>
       <SearchBar userInput={userInput} onChangeUserInput={(input) => setUserInput(input)} />
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-5">
         {filteredData.map(data => {
           return <Card title={data.title} description={data.description} />
         })}
+      </div> */}
+      {/* <SearchBar userInput={userInput} onChangeUserInput={(input) => setUserInput(input)} /> */}
+
+      <div className="sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-5">
+        {data.map(post => {
+          return <Card title={post.title} description={post.body} />
+        })}
       </div>
+
     </div>
   )
 }

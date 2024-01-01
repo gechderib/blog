@@ -1,4 +1,4 @@
-import BreadCrumbs from '@/app/components/BreadCrumbs'
+import BreadCrumbs from '@/components/BreadCrumbs'
 import React from 'react'
 
 const apiUrl = "https://api.openai.com/v1/chat/completions";

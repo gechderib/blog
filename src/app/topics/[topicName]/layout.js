@@ -1,5 +1,5 @@
 import React from 'react'
-import BreadCrumbs from '../../components/BreadCrumbs'
+import BreadCrumbs from '../../../components/BreadCrumbs'
 
 const TopicLayout = ({ children, params: { topicName } }) => {
 
