@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Card.module.css'
 import Link from 'next/link'
-const Card = ({ title, description }) => {
+const Card = ({ title, description, key=1 }) => {
   return (
     <div className='p-5 border border-red-200 rounded-lg'>
       <Link href={`/topics/${title}`} >
